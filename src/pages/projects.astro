@@ -1,0 +1,21 @@
+---
+import Header from '../components/Header.astro';
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Welcome to Astro.">
+	<main>
+		<Header />
+		<div class='flex justify-between'>
+            <div>Proyectos</div>
+        </div>
+	</main>
+</Layout>
+
+<style>
+	main {
+		margin: auto;
+		padding: 1.5rem;
+		max-width: 1024px;
+	}
+</style>

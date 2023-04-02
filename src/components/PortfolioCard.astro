@@ -1,0 +1,34 @@
+---
+export interface Props {
+	title: string;
+	description?: string;
+	href?: string;
+    image?: string;
+    tech?: string;
+}
+const { href, title, description, tech, image } = Astro.props;
+---
+<a class="relative w-1/4 bg-gray-900 group h-72 flex items-end" href={href}>
+    <img class="absolute inset-0 object-cover w-full h-full opacity-90 group-hover:opacity-10" src={image} alt={title} />
+    <div class="absolute inset-0 object-cover w-full h-full group-hover:opacity-0 flex items-center justify-center" >
+        <div class='bg-slate-800 bg-opacity-60 rounded px-3'>{title}</div>
+    </div>
+
+    <div class="relative p-2">
+    <div class="self-end">
+        <div
+        class="transition-all transform translate-y-8 opacity-0 group-hover:opacity-100 group-hover:translate-y-0">
+        <div class="p-2">
+            <div class='text-xl'>{title}</div>
+            <p class="text-sm text-white">
+            {description}
+            </p>
+            <p>{tech}</p>
+            <button class="mt-5 px-4 py-2 rounded text-sm text-white bg-cyan-600">Ver mas</button>
+        </div>
+        </div>
+    </div>
+    </div>
+</a>
+<style>
+</style>

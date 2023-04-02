@@ -1,0 +1,114 @@
+---
+import PortfolioCard from "./PortfolioCard.astro";
+import Jumbo from '../assets/images/jumbo.png'
+import Alfred from '../assets/images/alfred.png'
+import AlfredApp from '../assets/images/alfredApp.webp'
+
+const projects = [
+  {
+    title: "Alfred App",
+    description: "Aplicacion de Alfred",
+    tech: "Flutter",
+    image: AlfredApp
+  },
+  {
+    title: "Alfred",
+    description: "Pagina oficil de alfred",
+    tech: "React, Redux, html, material-ui",
+    image: Alfred
+  },
+  {
+    title: "Jumbo Colombia - VTEX-IO",
+    description: "Reconstruccion de la pagina totalmente con tecnologia VTEX-IO",
+    tech: "VTEX-IO, React, Redux, html, typescript, GraphQL",
+    image: Jumbo
+  },
+  {
+    title: "Hotel Managment app",
+    description: "Aplicacion para administrar un hotel",
+    tech: "React, Redux, html, less, ant design, typescript, Nodejs, supabase",
+    image: "https://hruiz13.github.io/CV-Hruiz/imagenes/hot1.PNG"
+  },
+  {
+    title: "Country app",
+    description: "Aplicacion de actividades en paises",
+    tech: "React, Redux, Nodejs, PostgreSQL",
+    image: "https://hruiz13.github.io/CV-Hruiz/imagenes/coun1.PNG"
+  },
+  {
+    title: "Batalla Naval App",
+    description: "Juego en linea para 2",
+    tech: "React, Nodejs, socket-io",
+    image: "https://hruiz13.github.io/CV-Hruiz/imagenes/bn1.PNG"
+  },
+  {
+    title: "Calendar App",
+    description: "Calendario",
+    tech: "React, Redux, router-dom, Nodejs, MySQL, material-ui",
+    image: "https://hruiz13.github.io/CV-Hruiz/imagenes/calendario.PNG"
+  },
+  {
+    title: "E-commerce",
+    description: "Tienda virtual de productos.",
+    tech: "Laravel, MySQL, Javascript, Mercadopago, Paypal",
+    image: "https://hruiz13.github.io/CV-Hruiz/imagenes/hruiz1.PNG"
+  },
+  {
+    title: "Weather App",
+    description: "Aplicacion del tiempo.",
+    tech: "React, Redux, router-dom",
+    image: "https://hruiz13.github.io/CV-Hruiz/imagenes/wapp1.PNG"
+  },
+  {
+    title: "Country App",
+    description: "Aplicacion de actividades en paises",
+    tech: "React Native, Nodejs",
+    image: "https://hruiz13.github.io/CV-Hruiz/imagenes/counat2.PNG"
+  },
+  {
+    title: "Aerolinea Virtual",
+    description: "Pagina web de una aerolinea virtual.",
+    tech: "html, css, php, mysql",
+    image: "https://hruiz13.github.io/CV-Hruiz/imagenes/ata1.PNG"
+  },
+  {
+    title: "Administracion produccion",
+    description: "Pagina web de administracion para empresa.",
+    tech: "PHP, MySQL, Javascript, Sockets-io, Nodejs, express",
+    image: "https://hruiz13.github.io/CV-Hruiz/imagenes/al1.PNG"
+  },
+  {
+    title: "Peso y balance",
+    description: "Pagina web para realizar peso y balance de un avion.",
+    tech: "html, css, php, mysql",
+    image: "https://hruiz13.github.io/CV-Hruiz/imagenes/aaa1.PNG"
+  },
+]
+---
+<about class="mt-10">
+    <div class='flex flex-col justify-around content-center about'>
+        <h2 class="text-5xl font-bold">Portfolio</h2>
+        <div class="flex flex-wrap items-center justify-center gap-10 my-20">
+          {
+            projects.map(({title, description, tech, image})=>
+              <PortfolioCard 
+                title={title}
+                description={description}
+                tech={tech}
+                image={image}
+              />
+            )
+          }
+          </div>
+    </div>
+</about>
+<style>
+    about{
+      background-color: #31333b;
+    }
+    .about {
+      margin: auto;
+      width: 100%;
+		  max-width: 1024px;
+	  }
+</style>

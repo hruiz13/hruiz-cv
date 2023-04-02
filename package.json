@@ -10,6 +10,15 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^2.1.9"
+    "@astro-github-elements/clipboard-copy": "^0.0.4",
+    "@astrojs/react": "^2.1.1",
+    "@astrojs/tailwind": "^3.1.1",
+    "@github/clipboard-copy-element": "^1.1.2",
+    "@types/react": "^18.0.32",
+    "@types/react-dom": "^18.0.11",
+    "astro": "^2.1.9",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tailwindcss": "^3.3.1"
   }
 }

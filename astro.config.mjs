@@ -5,5 +5,16 @@ import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [react(), tailwind()]
+  integrations: [react(), tailwind()],
+  base: './',
+  vite: {
+    base: './',
+    build:{
+      rollupOptions: {
+        output: {
+          assetFileNames: 'assets/[name][extname]'        
+        }
+      }
+    }
+  }
 });

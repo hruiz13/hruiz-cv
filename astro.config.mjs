@@ -6,13 +6,13 @@ import tailwind from "@astrojs/tailwind";
 // https://astro.build/config
 export default defineConfig({
   integrations: [react(), tailwind()],
-  base: './',
+  base: 'https://hruiz13.github.io/hruiz-cv/',
   vite: {
-    base: './',
+    base: 'https://hruiz13.github.io/hruiz-cv/',
     build:{
       rollupOptions: {
         output: {
-          assetFileNames: 'assets/[name][extname]'        
+          assetFileNames: 'assets/[name][extname]'
         }
       }
     }

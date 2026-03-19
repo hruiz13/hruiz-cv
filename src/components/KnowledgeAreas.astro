@@ -1,0 +1,145 @@
+---
+const knowledgeItems = [
+  {
+    title: 'Maquinas Laser',
+    description:
+      'Tengo conocimiento de manejo de maquinas laser, alineacion, mantenimiento y electronica de las mismas.'
+  },
+  {
+    title: 'Maquinas CNC',
+    description:
+      'Cuento con conocimiento de programacion en Codigo G, manejo de la maquina y mantenimiento general.'
+  },
+  {
+    title: 'Arduino',
+    description:
+      'He realizado proyectos de electronica basados en Arduino, incluyendo la programacion de las placas.'
+  }
+];
+
+const softwareTools = [
+  'Corel Draw',
+  'Adobe Illustrator',
+  'Adobe Premiere',
+  'Adobe Photoshop',
+  'Adobe Lightroom',
+  'Autocad (basico)',
+  'Fusion 360 (basico)',
+  'ArtCam'
+];
+---
+
+<section class="knowledge-block">
+  <div class="knowledge-block__header">
+    <div class="knowledge-block__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none">
+        <path d="M3 17.25V21h3.75L17.8 9.94l-3.75-3.75L3 17.25Z" fill="#60A5FA"></path>
+        <path d="M14.06 4.94 17.81 8.69 19.65 6.85a1.25 1.25 0 0 0 0-1.77l-1.67-1.67a1.25 1.25 0 0 0-1.77 0l-2.15 2.15Z" fill="#93C5FD"></path>
+      </svg>
+    </div>
+    <div>
+      <p class="knowledge-block__eyebrow">Conocimientos</p>
+      <h2>Habilidades y conocimientos</h2>
+    </div>
+  </div>
+
+  <div class="knowledge-grid">
+    {knowledgeItems.map((item) => (
+      <article class="knowledge-card">
+        <h3>{item.title}</h3>
+        <p>{item.description}</p>
+      </article>
+    ))}
+  </div>
+
+  <article class="knowledge-tools">
+    <h3>Manejo de programas</h3>
+    <p>Programas y herramientas que he utilizado en diferentes proyectos y procesos tecnicos.</p>
+    <ul>
+      {softwareTools.map((tool) => <li>{tool}</li>)}
+    </ul>
+  </article>
+</section>
+
+<style>
+  .knowledge-block {
+    width: 100%;
+  }
+
+  .knowledge-block__header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .knowledge-block__icon {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 1rem;
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.25), rgba(14, 165, 233, 0.12));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .knowledge-block__eyebrow {
+    margin: 0 0 0.35rem;
+    color: #60a5fa;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.85rem;
+  }
+
+  .knowledge-block h2 {
+    margin: 0;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+  }
+
+  .knowledge-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+
+  .knowledge-card,
+  .knowledge-tools {
+    border-radius: 1.25rem;
+    background: #3d3e42;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 1.25rem;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+  }
+
+  .knowledge-card h3,
+  .knowledge-tools h3 {
+    margin: 0 0 0.75rem;
+    font-size: 1.15rem;
+  }
+
+  .knowledge-card p,
+  .knowledge-tools p {
+    margin: 0;
+    line-height: 1.65;
+    color: #d8dde6;
+  }
+
+  .knowledge-tools {
+    margin-top: 1rem;
+  }
+
+  .knowledge-tools ul {
+    margin: 1rem 0 0;
+    padding-left: 1.25rem;
+    columns: 2;
+    column-gap: 2rem;
+    line-height: 1.9;
+  }
+
+  @media (max-width: 720px) {
+    .knowledge-tools ul {
+      columns: 1;
+    }
+  }
+</style>

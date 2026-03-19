@@ -1,0 +1,67 @@
+---
+import Header from '../components/Header.astro';
+import HobbiesList from '../components/HobbiesList.astro';
+import KnowledgeAreas from '../components/KnowledgeAreas.astro';
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Conocimientos | Hector Ruiz">
+	<main class="knowledge-page">
+		<Header />
+		<section class="knowledge-page__hero">
+			<p class="knowledge-page__eyebrow">Perfil ampliado</p>
+			<h1>Conocimientos y hobbies</h1>
+		</section>
+
+		<section class="knowledge-page__section">
+			<KnowledgeAreas />
+		</section>
+
+		<section class="knowledge-page__section">
+			<HobbiesList />
+		</section>
+	</main>
+</Layout>
+
+<style>
+	.knowledge-page {
+		margin: auto;
+		padding-bottom: 4rem;
+	}
+
+	.knowledge-page__hero,
+	.knowledge-page__section {
+		width: 100%;
+		max-width: 1024px;
+		margin: auto;
+		padding: 1.5rem;
+	}
+
+	.knowledge-page__hero {
+		padding-top: 3rem;
+		padding-bottom: 2rem;
+	}
+
+	.knowledge-page__eyebrow {
+		margin: 0 0 0.75rem;
+		color: #60a5fa;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		font-size: 0.85rem;
+	}
+
+	.knowledge-page__hero h1 {
+		margin: 0 0 1rem;
+		font-size: clamp(2.4rem, 4vw, 4rem);
+	}
+
+	.knowledge-page__hero p {
+		max-width: 760px;
+		line-height: 1.7;
+		color: #d8dde6;
+	}
+	
+	.knowledge-page__section + .knowledge-page__section {
+		padding-top: 0.5rem;
+	}
+</style>

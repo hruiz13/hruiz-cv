@@ -1,5 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const base = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/');
+const homeHref = base;
+const knowledgeHref = `${base}hobbies`;
+const projectsHref = `${base}projects`;
 ---
 
 <Layout title="hruiz developer">
@@ -8,9 +13,9 @@ import Layout from '../layouts/Layout.astro';
             <div><img src="https://www.hruiz.com/img/logo-hruiz.png" class="w-28"/></div>
             <div>
                 <ul class='flex gap-5'>
-                    <li><a href="/">INICIO</a></li>
-                    <li><a href="/hobbies">CONOCIMIENTOS</a></li>
-                    <li><a href="/projects">PROYECTOS</a></li>
+                    <li><a href={homeHref}>INICIO</a></li>
+                    <li><a href={knowledgeHref}>CONOCIMIENTOS</a></li>
+                    <li><a href={projectsHref}>PROYECTOS</a></li>
                 </ul>
             </div>
             <div></div>

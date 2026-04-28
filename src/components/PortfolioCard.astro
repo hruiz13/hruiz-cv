@@ -3,32 +3,28 @@ import type { PortfolioProject } from '../data/portfolio';
 import PortfolioModal from './PortfolioModal.astro';
 
 interface Props {
-	project: PortfolioProject & { imageSrc: string; detailGallery: string[] };
+	project: PortfolioProject & {
+    imageSrc: string;
+    detailGallery: string[];
+    descriptionEn: string;
+    descriptionEs: string;
+    summaryEn: string;
+    summaryEs: string;
+    bulletsEn: string[];
+    bulletsEs: string[];
+  };
 }
 
 const { project } = Astro.props;
 const modalId = `portfolio-modal-${project.id}`;
 ---
-<article class="relative w-1/4 min-w-[260px] bg-gray-900 group h-72 flex items-end portfolio-card">
-    <img class="absolute inset-0 object-cover w-full h-full opacity-90 group-hover:opacity-10" src={project.imageSrc} alt={project.title} />
-    <div class="absolute inset-0 object-cover w-full h-full group-hover:opacity-0 flex items-center justify-center" >
-        <div class='bg-slate-800 bg-opacity-60 rounded px-3'>{project.title}</div>
-    </div>
-
-    <div class="relative p-2">
-    <div class="self-end">
-        <div
-        class="transition-all transform translate-y-8 opacity-0 group-hover:opacity-100 group-hover:translate-y-0">
-        <div class="p-2">
-            <div class='text-xl'>{project.title}</div>
-            <p class="text-sm text-white">
-            {project.description}
-            </p>
-            <p>{project.tech}</p>
-            <button type="button" class="mt-5 px-4 py-2 rounded text-sm text-white bg-cyan-600 portfolio-card__button" data-dialog-open={modalId}>Ver mas</button>
-        </div>
-        </div>
-    </div>
+<article class="portfolio-card">
+    <img src={project.imageSrc} alt={project.title} />
+    <div class="portfolio-card__overlay">
+        <p>{project.tech}</p>
+        <h3>{project.title}</h3>
+        <span data-i18n data-en={project.descriptionEn} data-es={project.descriptionEs}>{project.descriptionEn}</span>
+        <button type="button" class="portfolio-card__button" data-dialog-open={modalId} data-i18n data-en="View more" data-es="Ver mas">View more</button>
     </div>
 </article>
 <PortfolioModal project={project} />
@@ -72,8 +68,79 @@ const modalId = `portfolio-modal-${project.id}`;
   });
 </script>
 <style>
+  .portfolio-card {
+    aspect-ratio: 0.92;
+    background: #071316;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.24);
+    min-height: 19rem;
+    overflow: hidden;
+    position: relative;
+  }
+  .portfolio-card img {
+    display: block;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.84;
+    transform: scale(1.01);
+    transition: transform 260ms ease, opacity 260ms ease;
+    width: 100%;
+  }
+  .portfolio-card::after {
+    background:
+      linear-gradient(180deg, rgba(7, 19, 22, 0) 16%, rgba(7, 19, 22, 0.86) 78%),
+      linear-gradient(135deg, rgba(214, 40, 40, 0.52), transparent 45%);
+    content: "";
+    inset: 0;
+    position: absolute;
+  }
+  .portfolio-card__overlay {
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    left: 0;
+    padding: 1rem;
+    position: absolute;
+    right: 0;
+    z-index: 1;
+  }
+  .portfolio-card__overlay p {
+    color: #ffdd8a;
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    line-height: 1.4;
+    margin: 0;
+    text-transform: uppercase;
+  }
+  h3 {
+    color: #ffffff;
+    font-size: 1.35rem;
+    font-weight: 900;
+    line-height: 1.05;
+    margin: 0;
+  }
+  .portfolio-card__overlay span {
+    color: rgba(251, 251, 247, 0.78);
+    font-size: 0.95rem;
+    line-height: 1.45;
+  }
   .portfolio-card__button {
+    align-self: flex-start;
+    background: var(--maple);
+    border-radius: 999px;
     cursor: pointer;
     border: 0;
+    color: #ffffff;
+    font-size: 0.86rem;
+    font-weight: 800;
+    margin-top: 0.4rem;
+    padding: 0.7rem 1rem;
+  }
+  .portfolio-card:hover img {
+    opacity: 0.52;
+    transform: scale(1.06);
   }
 </style>

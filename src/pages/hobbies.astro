@@ -1,16 +1,20 @@
 ---
 import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 import HobbiesList from '../components/HobbiesList.astro';
 import KnowledgeAreas from '../components/KnowledgeAreas.astro';
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Conocimientos | Hector Ruiz">
+<Layout title="Knowledge | Hector Ruiz">
 	<main class="knowledge-page">
 		<Header />
 		<section class="knowledge-page__hero">
-			<p class="knowledge-page__eyebrow">Perfil ampliado</p>
-			<h1>Conocimientos y hobbies</h1>
+			<p class="knowledge-page__eyebrow" data-i18n data-en="Expanded profile" data-es="Perfil ampliado">Expanded profile</p>
+			<h1 data-i18n data-en="Knowledge beyond code" data-es="Conocimientos mas alla del codigo">Knowledge beyond code</h1>
+			<p data-i18n data-en="A practical mix of digital fabrication, creative tools, electronics, and hands-on interests that shape how I solve frontend problems." data-es="Una mezcla practica de fabricacion digital, herramientas creativas, electronica e intereses manuales que influyen en mi forma de resolver problemas frontend.">
+				A practical mix of digital fabrication, creative tools, electronics, and hands-on interests that shape how I solve frontend problems.
+			</p>
 		</section>
 
 		<section class="knowledge-page__section">
@@ -20,13 +24,15 @@ import Layout from '../layouts/Layout.astro';
 		<section class="knowledge-page__section">
 			<HobbiesList />
 		</section>
+		<Footer />
 	</main>
 </Layout>
 
 <style>
 	.knowledge-page {
 		margin: auto;
-		padding-bottom: 4rem;
+		background: #fbfbf7;
+		min-height: 100vh;
 	}
 
 	.knowledge-page__hero,
@@ -34,34 +40,57 @@ import Layout from '../layouts/Layout.astro';
 		width: 100%;
 		max-width: 1024px;
 		margin: auto;
-		padding: 1.5rem;
+		padding: 1.5rem 1.25rem;
 	}
 
 	.knowledge-page__hero {
-		padding-top: 3rem;
-		padding-bottom: 2rem;
+		background:
+			radial-gradient(circle at 82% 18%, rgba(214, 40, 40, 0.2), transparent 22rem),
+			linear-gradient(180deg, rgba(7, 19, 22, 0.98), rgba(16, 33, 38, 0.98));
+		box-shadow: 0 0 0 100vmax rgba(16, 33, 38, 0.98);
+		clip-path: inset(0 -100vmax);
+		color: var(--snow);
+		padding-top: 5rem;
+		padding-bottom: 3rem;
+		position: relative;
+	}
+
+	.knowledge-page__hero::after {
+		background: linear-gradient(90deg, var(--maple), #ffb703, transparent);
+		border-radius: 999px;
+		content: "";
+		display: block;
+		height: 0.35rem;
+		margin-top: 2rem;
+		width: min(18rem, 70vw);
 	}
 
 	.knowledge-page__eyebrow {
 		margin: 0 0 0.75rem;
-		color: #60a5fa;
+		color: #ffdd8a;
 		text-transform: uppercase;
-		letter-spacing: 0.08em;
-		font-size: 0.85rem;
+		letter-spacing: 0.18em;
+		font-size: 0.8rem;
+		font-weight: 900;
 	}
 
 	.knowledge-page__hero h1 {
 		margin: 0 0 1rem;
-		font-size: clamp(2.4rem, 4vw, 4rem);
+		font-size: clamp(3rem, 8vw, 6rem);
+		font-weight: 900;
+		letter-spacing: 0;
+		line-height: 0.95;
+		max-width: 9ch;
 	}
 
 	.knowledge-page__hero p {
 		max-width: 760px;
 		line-height: 1.7;
-		color: #d8dde6;
+		color: rgba(251, 251, 247, 0.78);
+		font-size: 1.1rem;
 	}
 	
 	.knowledge-page__section + .knowledge-page__section {
-		padding-top: 0.5rem;
+		padding-top: 1rem;
 	}
 </style>

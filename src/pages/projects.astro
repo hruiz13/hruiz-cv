@@ -1,21 +1,308 @@
 ---
+import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
+import Portfolio from '../components/Portfolio.astro';
 import Layout from '../layouts/Layout.astro';
+
+const githubHighlights = [
+	{
+		name: 'residuos-app',
+		typeEn: 'Live production app',
+		typeEs: 'App en produccion',
+		descriptionEn: 'A recent TypeScript app deployed on Vercel, showing current production delivery work.',
+		descriptionEs: 'Una app reciente en TypeScript desplegada en Vercel, mostrando trabajo actual en produccion.',
+		stack: 'TypeScript / Vercel',
+		repo: 'https://github.com/hruiz13/residuos-app',
+		live: 'https://residuos-app-nu.vercel.app',
+	},
+	{
+		name: 'alliyana',
+		typeEn: 'Admin product',
+		typeEs: 'Producto administrativo',
+		descriptionEn: 'Condominium administration system, paired with a public backend repository.',
+		descriptionEs: 'Sistema de administracion de condominios, complementado con un backend publico.',
+		stack: 'JavaScript / Backend',
+		repo: 'https://github.com/hruiz13/alliyana',
+		live: '',
+	},
+	{
+		name: 'batalla-naval-v2',
+		typeEn: 'Real-time app',
+		typeEs: 'App en tiempo real',
+		descriptionEn: 'TypeScript version of a real-time game experience, building on previous socket work.',
+		descriptionEs: 'Version en TypeScript de una experiencia de juego en tiempo real, basada en trabajo previo con sockets.',
+		stack: 'TypeScript / Realtime',
+		repo: 'https://github.com/hruiz13/batalla-naval-v2',
+		live: '',
+	},
+	{
+		name: 'vtex-practice',
+		typeEn: 'E-commerce platform practice',
+		typeEs: 'Practica de plataforma e-commerce',
+		descriptionEn: 'Public VTEX learning repository aligned with e-commerce storefront experience.',
+		descriptionEs: 'Repositorio publico de aprendizaje VTEX conectado con experiencia en storefronts e-commerce.',
+		stack: 'VTEX / CSS',
+		repo: 'https://github.com/hruiz13/vtex-practice',
+		live: '',
+	},
+];
 ---
 
-<Layout title="Welcome to Astro.">
-	<main>
+<Layout title="Projects | Hector Ruiz">
+	<main class="projects-page">
 		<Header />
-		<div class='flex justify-between'>
-            <div>Proyectos</div>
-        </div>
+		<section class="projects-hero">
+			<div class="projects-hero__content">
+				<p class="projects-hero__eyebrow" data-i18n data-en="Selected work" data-es="Trabajo seleccionado">Selected work</p>
+				<h1 data-i18n data-en="Production apps, shipped with product focus" data-es="Apps en produccion, construidas con foco de producto">Production apps, shipped with product focus</h1>
+				<p data-i18n data-en="A closer look at production apps, live deployments, e-commerce storefronts, admin tools, mobile experiments, and real-time experiences I have designed, built, and shipped." data-es="Una mirada mas cercana a apps en produccion, despliegues activos, storefronts e-commerce, herramientas administrativas, experimentos moviles y experiencias en tiempo real que he disenado, construido y publicado.">
+					A closer look at production apps, live deployments, e-commerce storefronts, admin tools, mobile experiments, and real-time experiences I have designed, built, and shipped.
+				</p>
+			</div>
+			<div class="projects-hero__panel" aria-label="Project highlights">
+				<div>
+					<strong>30</strong>
+					<span data-i18n data-en="Public repositories" data-es="Repositorios publicos">Public repositories</span>
+				</div>
+				<div>
+					<strong>Live</strong>
+					<span data-i18n data-en="Production deployments" data-es="Despliegues en produccion">Production deployments</span>
+				</div>
+				<div>
+					<strong>VTEX</strong>
+					<span data-i18n data-en="E-commerce delivery" data-es="Entrega e-commerce">E-commerce delivery</span>
+				</div>
+			</div>
+		</section>
+		<section class="github-section">
+			<div class="github-section__header">
+				<p class="github-section__eyebrow">GitHub</p>
+				<h2 data-i18n data-en="Public code that supports the story" data-es="Codigo publico que complementa la experiencia">Public code that supports the story</h2>
+				<p data-i18n data-en="A few public repositories reinforce the production angle: live apps, admin systems, VTEX practice, and real-time projects." data-es="Algunos repositorios publicos refuerzan el enfoque de produccion: apps live, sistemas administrativos, practica VTEX y proyectos en tiempo real.">
+					A few public repositories reinforce the production angle: live apps, admin systems, VTEX practice, and real-time projects.
+				</p>
+			</div>
+			<div class="github-grid">
+				{githubHighlights.map((item) => (
+					<article class="github-card">
+						<div>
+							<p data-i18n data-en={item.typeEn} data-es={item.typeEs}>{item.typeEn}</p>
+							<h3>{item.name}</h3>
+							<span>{item.stack}</span>
+						</div>
+						<p data-i18n data-en={item.descriptionEn} data-es={item.descriptionEs}>{item.descriptionEn}</p>
+						<div class="github-card__links">
+							<a href={item.repo} target="_blank" rel="noopener noreferrer">GitHub</a>
+							{item.live && <a href={item.live} target="_blank" rel="noopener noreferrer" data-i18n data-en="Live app" data-es="App live">Live app</a>}
+						</div>
+					</article>
+				))}
+			</div>
+		</section>
+		<Portfolio />
+		<Footer />
 	</main>
 </Layout>
 
 <style>
-	main {
+	.projects-page {
+		background: #102126;
+		min-height: 100vh;
 		margin: auto;
-		padding: 1.5rem;
+	}
+
+	.projects-hero {
+		align-items: end;
+		background:
+			radial-gradient(circle at 82% 18%, rgba(214, 40, 40, 0.24), transparent 24rem),
+			linear-gradient(180deg, rgba(7, 19, 22, 0.98), rgba(16, 33, 38, 0.98));
+		color: var(--snow);
+		display: grid;
+		gap: 2rem;
+		grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.46fr);
+		margin: auto;
 		max-width: 1024px;
+		padding: 5rem 1.25rem 4rem;
+	}
+
+	.github-section {
+		background: #fbfbf7;
+		color: #102126;
+		padding: 5rem 1.25rem;
+	}
+
+	.github-section__header,
+	.github-grid {
+		margin: auto;
+		max-width: 1024px;
+		width: 100%;
+	}
+
+	.github-section__eyebrow {
+		color: var(--maple);
+		font-size: 0.78rem;
+		font-weight: 900;
+		letter-spacing: 0.18em;
+		margin: 0 0 0.65rem;
+		text-transform: uppercase;
+	}
+
+	.github-section h2 {
+		color: #102126;
+		font-size: clamp(2.4rem, 5vw, 4.3rem);
+		font-weight: 900;
+		line-height: 1;
+		margin: 0;
+		max-width: 11ch;
+	}
+
+	.github-section__header > p:last-child {
+		color: #304247;
+		font-size: 1.05rem;
+		line-height: 1.7;
+		margin: 1.2rem 0 0;
+		max-width: 44rem;
+	}
+
+	.github-grid {
+		display: grid;
+		gap: 1rem;
+		grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+		margin-top: 2rem;
+	}
+
+	.github-card {
+		background: #ffffff;
+		border: 1px solid rgba(214, 40, 40, 0.16);
+		border-radius: 8px;
+		box-shadow: 0 18px 45px rgba(16, 33, 38, 0.08);
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		min-height: 17rem;
+		padding: 1.25rem;
+	}
+
+	.github-card > div:first-child p {
+		color: var(--maple);
+		font-size: 0.72rem;
+		font-weight: 900;
+		letter-spacing: 0.1em;
+		margin: 0 0 0.55rem;
+		text-transform: uppercase;
+	}
+
+	.github-card h3 {
+		color: #102126;
+		font-size: 1.35rem;
+		font-weight: 900;
+		line-height: 1.05;
+		margin: 0;
+	}
+
+	.github-card span {
+		color: #4a7c59;
+		display: block;
+		font-size: 0.86rem;
+		font-weight: 900;
+		margin-top: 0.5rem;
+	}
+
+	.github-card > p {
+		color: #304247;
+		line-height: 1.6;
+		margin: 0;
+	}
+
+	.github-card__links {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.6rem;
+		margin-top: auto;
+	}
+
+	.github-card__links a {
+		background: #102126;
+		border-radius: 999px;
+		color: #ffffff;
+		font-size: 0.82rem;
+		font-weight: 900;
+		padding: 0.68rem 0.9rem;
+		text-decoration: none;
+	}
+
+	.github-card__links a:last-child {
+		background: var(--maple);
+	}
+
+	.projects-hero__eyebrow {
+		color: #ffdd8a;
+		font-size: 0.8rem;
+		font-weight: 900;
+		letter-spacing: 0.18em;
+		margin: 0 0 0.9rem;
+		text-transform: uppercase;
+	}
+
+	.projects-hero h1 {
+		font-size: clamp(3rem, 8vw, 6rem);
+		font-weight: 900;
+		letter-spacing: 0;
+		line-height: 0.95;
+		margin: 0;
+		max-width: 10ch;
+	}
+
+	.projects-hero__content > p:last-child {
+		color: rgba(251, 251, 247, 0.78);
+		font-size: 1.1rem;
+		line-height: 1.7;
+		margin: 1.4rem 0 0;
+		max-width: 42rem;
+	}
+
+	.projects-hero__panel {
+		background:
+			linear-gradient(#fbfbf7, #fbfbf7) padding-box,
+			linear-gradient(135deg, var(--maple), #ffb703, var(--ice)) border-box;
+		border: 1px solid transparent;
+		border-radius: 8px;
+		box-shadow: 0 28px 70px rgba(0, 0, 0, 0.22);
+		color: #102126;
+		display: grid;
+		gap: 0.85rem;
+		padding: 1rem;
+	}
+
+	.projects-hero__panel div {
+		border-bottom: 1px solid rgba(16, 33, 38, 0.12);
+		padding: 0 0 0.85rem;
+	}
+
+	.projects-hero__panel div:last-child {
+		border-bottom: 0;
+		padding-bottom: 0;
+	}
+
+	.projects-hero__panel strong {
+		display: block;
+		font-size: 1.8rem;
+		font-weight: 900;
+		line-height: 1;
+	}
+
+	.projects-hero__panel span {
+		color: #304247;
+		display: block;
+		font-size: 0.86rem;
+		font-weight: 800;
+		margin-top: 0.35rem;
+	}
+
+	@media (max-width: 760px) {
+		.projects-hero {
+			grid-template-columns: 1fr;
+			padding-top: 4rem;
+		}
 	}
 </style>

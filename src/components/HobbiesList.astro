@@ -1,16 +1,22 @@
 ---
 const hobbies = [
   {
-    title: 'Aeromodelismo',
-    description: 'He realizado aeromodelos a control remoto.'
+    titleEn: 'Aeromodelling',
+    titleEs: 'Aeromodelismo',
+    descriptionEn: 'Remote-control aircraft building, setup, and hands-on experimentation.',
+    descriptionEs: 'He realizado aeromodelos a control remoto.'
   },
   {
-    title: 'Fotografia y edicion de video',
-    description: 'Me gusta la fotografia digital y la edicion de video. He realizado cursos de esto.'
+    titleEn: 'Photography and video editing',
+    titleEs: 'Fotografia y edicion de video',
+    descriptionEn: 'Digital photography and video editing, supported by coursework and personal practice.',
+    descriptionEs: 'Me gusta la fotografia digital y la edicion de video. He realizado cursos de esto.'
   },
   {
-    title: 'Carpinteria digital',
-    description: 'He realizado proyectos de carpinteria con tecnologia de maquinaria CNC.'
+    titleEn: 'Digital woodworking',
+    titleEs: 'Carpinteria digital',
+    descriptionEn: 'Woodworking projects built with CNC machinery and digital fabrication processes.',
+    descriptionEs: 'He realizado proyectos de carpinteria con tecnologia de maquinaria CNC.'
   }
 ];
 ---
@@ -24,7 +30,7 @@ const hobbies = [
       </svg>
     </div>
     <div>
-      <p class="hobbies-block__eyebrow">Intereses</p>
+      <p class="hobbies-block__eyebrow" data-i18n data-en="Interests" data-es="Intereses">Interests</p>
       <h2>Hobbies</h2>
     </div>
   </div>
@@ -32,8 +38,8 @@ const hobbies = [
   <div class="hobbies-list">
     {hobbies.map((item) => (
       <article class="hobby-card">
-        <h3>{item.title}</h3>
-        <p>{item.description}</p>
+        <h3 data-i18n data-en={item.titleEn} data-es={item.titleEs}>{item.titleEn}</h3>
+        <p data-i18n data-en={item.descriptionEn} data-es={item.descriptionEs}>{item.descriptionEn}</p>
       </article>
     ))}
   </div>
@@ -41,6 +47,7 @@ const hobbies = [
 
 <style>
   .hobbies-block {
+    color: #102126;
     width: 100%;
   }
 
@@ -54,49 +61,57 @@ const hobbies = [
   .hobbies-block__icon {
     width: 4rem;
     height: 4rem;
-    border-radius: 1rem;
-    background: linear-gradient(135deg, rgba(34, 197, 94, 0.18), rgba(14, 165, 233, 0.16));
+    border-radius: 8px;
+    background:
+      linear-gradient(#102126, #102126) padding-box,
+      linear-gradient(135deg, #4a7c59, #d8f3ff) border-box;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid transparent;
   }
 
   .hobbies-block__eyebrow {
     margin: 0 0 0.35rem;
-    color: #67e8f9;
+    color: var(--maple);
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    font-size: 0.85rem;
+    letter-spacing: 0.18em;
+    font-size: 0.78rem;
+    font-weight: 900;
   }
 
   .hobbies-block h2 {
     margin: 0;
-    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    color: #102126;
+    font-size: clamp(2rem, 4vw, 3.4rem);
+    font-weight: 900;
+    line-height: 1;
   }
 
   .hobbies-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
     gap: 1rem;
   }
 
   .hobby-card {
-    border-radius: 1.25rem;
-    background: #3d3e42;
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    padding: 1.25rem;
-    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+    border-radius: 8px;
+    background: #ffffff;
+    border: 1px solid rgba(214, 40, 40, 0.16);
+    padding: 1.35rem;
+    box-shadow: 0 18px 45px rgba(16, 33, 38, 0.08);
   }
 
   .hobby-card h3 {
     margin: 0 0 0.75rem;
-    font-size: 1.15rem;
+    color: #102126;
+    font-size: 1.12rem;
+    font-weight: 900;
   }
 
   .hobby-card p {
     margin: 0;
-    color: #d8dde6;
+    color: #304247;
     line-height: 1.65;
   }
 </style>

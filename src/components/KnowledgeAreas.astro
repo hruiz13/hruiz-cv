@@ -1,18 +1,27 @@
 ---
 const knowledgeItems = [
   {
-    title: 'Maquinas Laser',
-    description:
+    titleEn: 'Laser machines',
+    titleEs: 'Maquinas laser',
+    descriptionEn:
+      'Operation, alignment, maintenance, and basic electronics for laser cutting and engraving workflows.',
+    descriptionEs:
       'Tengo conocimiento de manejo de maquinas laser, alineacion, mantenimiento y electronica de las mismas.'
   },
   {
-    title: 'Maquinas CNC',
-    description:
+    titleEn: 'CNC machines',
+    titleEs: 'Maquinas CNC',
+    descriptionEn:
+      'G-code programming, machine operation, setup, and general maintenance for CNC production.',
+    descriptionEs:
       'Cuento con conocimiento de programacion en Codigo G, manejo de la maquina y mantenimiento general.'
   },
   {
-    title: 'Arduino',
-    description:
+    titleEn: 'Arduino',
+    titleEs: 'Arduino',
+    descriptionEn:
+      'Electronics projects based on Arduino, including board programming and prototype logic.',
+    descriptionEs:
       'He realizado proyectos de electronica basados en Arduino, incluyendo la programacion de las placas.'
   }
 ];
@@ -38,23 +47,23 @@ const softwareTools = [
       </svg>
     </div>
     <div>
-      <p class="knowledge-block__eyebrow">Conocimientos</p>
-      <h2>Habilidades y conocimientos</h2>
+      <p class="knowledge-block__eyebrow" data-i18n data-en="Knowledge" data-es="Conocimientos">Knowledge</p>
+      <h2 data-i18n data-en="Hands-on technical range" data-es="Habilidades y conocimientos">Hands-on technical range</h2>
     </div>
   </div>
 
   <div class="knowledge-grid">
     {knowledgeItems.map((item) => (
       <article class="knowledge-card">
-        <h3>{item.title}</h3>
-        <p>{item.description}</p>
+        <h3 data-i18n data-en={item.titleEn} data-es={item.titleEs}>{item.titleEn}</h3>
+        <p data-i18n data-en={item.descriptionEn} data-es={item.descriptionEs}>{item.descriptionEn}</p>
       </article>
     ))}
   </div>
 
   <article class="knowledge-tools">
-    <h3>Manejo de programas</h3>
-    <p>Programas y herramientas que he utilizado en diferentes proyectos y procesos tecnicos.</p>
+    <h3 data-i18n data-en="Creative and production software" data-es="Manejo de programas">Creative and production software</h3>
+    <p data-i18n data-en="Tools I have used across design, fabrication, media, and technical production projects." data-es="Programas y herramientas que he utilizado en diferentes proyectos y procesos tecnicos.">Tools I have used across design, fabrication, media, and technical production projects.</p>
     <ul>
       {softwareTools.map((tool) => <li>{tool}</li>)}
     </ul>
@@ -63,6 +72,9 @@ const softwareTools = [
 
 <style>
   .knowledge-block {
+    background: #fbfbf7;
+    border-radius: 8px;
+    color: #102126;
     width: 100%;
   }
 
@@ -76,57 +88,77 @@ const softwareTools = [
   .knowledge-block__icon {
     width: 4rem;
     height: 4rem;
-    border-radius: 1rem;
-    background: linear-gradient(135deg, rgba(37, 99, 235, 0.25), rgba(14, 165, 233, 0.12));
+    border-radius: 8px;
+    background:
+      linear-gradient(#102126, #102126) padding-box,
+      linear-gradient(135deg, var(--maple), #ffb703) border-box;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid transparent;
   }
 
   .knowledge-block__eyebrow {
     margin: 0 0 0.35rem;
-    color: #60a5fa;
+    color: var(--maple);
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    font-size: 0.85rem;
+    letter-spacing: 0.18em;
+    font-size: 0.78rem;
+    font-weight: 900;
   }
 
   .knowledge-block h2 {
     margin: 0;
-    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    color: #102126;
+    font-size: clamp(2rem, 4vw, 3.4rem);
+    font-weight: 900;
+    line-height: 1;
   }
 
   .knowledge-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
     gap: 1rem;
   }
 
   .knowledge-card,
   .knowledge-tools {
-    border-radius: 1.25rem;
-    background: #3d3e42;
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    padding: 1.25rem;
-    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+    border-radius: 8px;
+    background: #ffffff;
+    border: 1px solid rgba(214, 40, 40, 0.16);
+    padding: 1.35rem;
+    box-shadow: 0 18px 45px rgba(16, 33, 38, 0.08);
   }
 
   .knowledge-card h3,
   .knowledge-tools h3 {
     margin: 0 0 0.75rem;
-    font-size: 1.15rem;
+    color: #102126;
+    font-size: 1.12rem;
+    font-weight: 900;
   }
 
   .knowledge-card p,
   .knowledge-tools p {
     margin: 0;
     line-height: 1.65;
-    color: #d8dde6;
+    color: #304247;
   }
 
   .knowledge-tools {
     margin-top: 1rem;
+    background:
+      radial-gradient(circle at 10% 0, rgba(216, 243, 255, 0.18), transparent 18rem),
+      #102126;
+    color: var(--snow);
+  }
+
+  .knowledge-tools h3 {
+    color: var(--snow);
+  }
+
+  .knowledge-tools p {
+    color: rgba(251, 251, 247, 0.78);
   }
 
   .knowledge-tools ul {
@@ -135,6 +167,12 @@ const softwareTools = [
     columns: 2;
     column-gap: 2rem;
     line-height: 1.9;
+    list-style: none;
+  }
+
+  .knowledge-tools li {
+    color: var(--ice);
+    font-weight: 800;
   }
 
   @media (max-width: 720px) {

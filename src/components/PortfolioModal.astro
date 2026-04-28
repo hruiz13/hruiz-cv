@@ -2,7 +2,14 @@
 import type { PortfolioProject } from '../data/portfolio';
 
 interface Props {
-  project: PortfolioProject & { imageSrc: string; detailGallery: string[] };
+  project: PortfolioProject & {
+    imageSrc: string;
+    detailGallery: string[];
+    summaryEn: string;
+    summaryEs: string;
+    bulletsEn: string[];
+    bulletsEs: string[];
+  };
 }
 
 const { project } = Astro.props;
@@ -11,34 +18,36 @@ const modalId = `portfolio-modal-${project.id}`;
 
 <dialog id={modalId} class="portfolio-modal" aria-labelledby={`${modalId}-title`}>
   <div class="portfolio-modal__shell">
-    <button type="button" class="portfolio-modal__close" data-dialog-close aria-label={`Cerrar detalle de ${project.title}`}>
-      Cerrar
+    <button type="button" class="portfolio-modal__close" data-dialog-close aria-label={`Close ${project.title} details`} data-i18n data-en="Close" data-es="Cerrar">
+      Close
     </button>
 
     <div class="portfolio-modal__content">
       <div class="portfolio-modal__header">
         <p class="portfolio-modal__eyebrow">{project.tech}</p>
         <h3 id={`${modalId}-title`} class="portfolio-modal__title">{project.title}</h3>
-        <p class="portfolio-modal__summary">{project.details.summary}</p>
+        <p class="portfolio-modal__summary" data-i18n data-en={project.summaryEn} data-es={project.summaryEs}>{project.summaryEn}</p>
       </div>
 
       <div class="portfolio-modal__section">
-        <h4>Tecnologias</h4>
+        <h4 data-i18n data-en="Technologies" data-es="Tecnologias">Technologies</h4>
         <ul class="portfolio-modal__tags">
           {project.details.technologies.map((item) => <li>{item}</li>)}
         </ul>
       </div>
 
       <div class="portfolio-modal__section">
-        <h4>Mas informacion</h4>
+        <h4 data-i18n data-en="More information" data-es="Mas informacion">More information</h4>
         <ul class="portfolio-modal__bullets">
-          {project.details.bullets.map((item) => <li>{item}</li>)}
+          {project.bulletsEn.map((item, index) => (
+            <li data-i18n data-en={item} data-es={project.bulletsEs[index] ?? item}>{item}</li>
+          ))}
         </ul>
       </div>
 
       {project.detailGallery.length > 0 && (
         <div class="portfolio-modal__section">
-          <h4>Galeria</h4>
+          <h4 data-i18n data-en="Gallery" data-es="Galeria">Gallery</h4>
           <div class="portfolio-modal__gallery">
             {project.detailGallery.map((image) => (
               <img src={image} alt={`${project.title} captura`} loading="lazy" />
@@ -49,16 +58,16 @@ const modalId = `portfolio-modal-${project.id}`;
 
       {(project.details.liveUrl || project.details.videoUrl) && (
         <div class="portfolio-modal__section">
-          <h4>Enlaces</h4>
+          <h4 data-i18n data-en="Links" data-es="Enlaces">Links</h4>
           <div class="portfolio-modal__links">
             {project.details.liveUrl && (
               <a href={project.details.liveUrl} target="_blank" rel="noopener noreferrer">
-                {project.details.liveLabel ?? 'Ver proyecto'}
+                <span data-i18n data-en={project.details.liveLabel === 'Ver demo' ? 'View demo' : 'View project'} data-es={project.details.liveLabel ?? 'Ver proyecto'}>{project.details.liveLabel === 'Ver demo' ? 'View demo' : 'View project'}</span>
               </a>
             )}
             {project.details.videoUrl && (
               <a href={project.details.videoUrl.replace('/embed/', '/watch?v=')} target="_blank" rel="noopener noreferrer">
-                Ver video
+                <span data-i18n data-en="Watch video" data-es="Ver video">Watch video</span>
               </a>
             )}
           </div>

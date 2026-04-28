@@ -12,16 +12,189 @@ const withBase = (path: string) => {
 const resolveImage = (image: string | ImageMetadata) =>
   typeof image === 'string' ? withBase(image) : image.src;
 
+const portfolioCopy: Record<string, { en: string; es: string }> = {
+  'alfred-app': {
+    en: 'Alfred mobile application.',
+    es: 'Aplicacion de Alfred',
+  },
+  'alfred-web': {
+    en: 'Official Alfred website.',
+    es: 'Pagina oficil de alfred',
+  },
+  'jumbo-vtex': {
+    en: 'Full rebuild of the website with VTEX IO technology.',
+    es: 'Reconstruccion de la pagina totalmente con tecnologia VTEX-IO',
+  },
+  'hotel-management': {
+    en: 'Application for hotel administration.',
+    es: 'Aplicacion para administrar un hotel',
+  },
+  'country-app': {
+    en: 'Country activities application.',
+    es: 'Aplicacion de actividades en paises',
+  },
+  'batalla-naval': {
+    en: 'Online two-player game.',
+    es: 'Juego en linea para 2',
+  },
+  'calendar-app': {
+    en: 'Calendar application.',
+    es: 'Calendario',
+  },
+  'e-commerce': {
+    en: 'Online store for digital commerce.',
+    es: 'Tienda virtual de productos.',
+  },
+  'weather-app': {
+    en: 'Weather application.',
+    es: 'Aplicacion del tiempo.',
+  },
+  'country-react-native': {
+    en: 'Mobile version of the country activities app.',
+    es: 'Aplicacion de actividades en paises',
+  },
+  'aerolinea-virtual': {
+    en: 'Website for a virtual airline.',
+    es: 'Pagina web de una aerolinea virtual.',
+  },
+  'administracion-produccion': {
+    en: 'Business production administration website.',
+    es: 'Pagina web de administracion para empresa.',
+  },
+};
+
+const portfolioDetailsCopy: Record<string, { summaryEn: string; bulletsEn: string[] }> = {
+  'alfred-app': {
+    summaryEn:
+      'Alfred mobile app listed in this portfolio. This repository keeps a concise project profile based on the current portfolio content.',
+    bulletsEn: [
+      'Mobile-first project experience.',
+      'Part of the current professional portfolio.',
+      'The project profile can be expanded later with more functional context or screenshots.',
+    ],
+  },
+  'alfred-web': {
+    summaryEn:
+      'Official Alfred website included in the current portfolio, presented here with a concise and clear project profile.',
+    bulletsEn: [
+      'Corporate web project listed in the portfolio.',
+      'Built with a React-based frontend stack.',
+      'Can be enriched later with impact, responsibilities, and links.',
+    ],
+  },
+  'jumbo-vtex': {
+    summaryEn:
+      'Migration and full rebuild from VTEX legacy to VTEX IO for Tiendas Jumbo Colombia.',
+    bulletsEn: [
+      'Rebuilt the website by migrating from VTEX legacy to VTEX IO.',
+      'Improved promotion workflows and dynamic content management.',
+      'Componentized sections and customized checkout flows for business needs.',
+      'Worked in a 3-developer team with technical leadership and VTEX IO solution design responsibilities.',
+    ],
+  },
+  'hotel-management': {
+    summaryEn:
+      'Hotel management web app focused on collaborative workflows, best practices, and team delivery.',
+    bulletsEn: [
+      'Built a web app from scratch for hotel operations management.',
+      'Developed with a 10-person team using SCRUM.',
+      'Worked in rotating pairs to collaborate across the whole team.',
+      'Used Git and Airtable for task organization and project tracking.',
+    ],
+  },
+  'country-app': {
+    summaryEn:
+      'Application for storing activities across a list of countries, using an external API and custom persistence.',
+    bulletsEn: [
+      'Fetched country data from an external API.',
+      'Created and stored internal activities associated with countries.',
+      'Connected frontend and backend with a PostgreSQL database.',
+    ],
+  },
+  'batalla-naval': {
+    summaryEn:
+      'Online two-player game with real-time communication powered by sockets.',
+    bulletsEn: [
+      'Implemented an online Battleship game.',
+      'Enabled real-time communication for two players.',
+      'Built an interactive experience supported by Socket.io.',
+    ],
+  },
+  'calendar-app': {
+    summaryEn:
+      'Calendar application for managing activities in residential communities.',
+    bulletsEn: [
+      'Administrative calendar for activity management.',
+      'Interface based on Material UI.',
+      'Backend support for event persistence.',
+    ],
+  },
+  'e-commerce': {
+    summaryEn:
+      'E-commerce platform with shopping flows, payments, and an admin panel.',
+    bulletsEn: [
+      'User registration for purchases.',
+      'Payment integrations with Mercado Pago and PayPal.',
+      'Shopping cart with COP and USD support.',
+      'Admin panel for users, categories, products, and sales.',
+    ],
+  },
+  'weather-app': {
+    summaryEn:
+      'Weather app for searching forecasts by city, with detail views and temperature conversion.',
+    bulletsEn: [
+      'City-based search.',
+      'Detailed result view.',
+      'Unit switch between Celsius and Fahrenheit.',
+    ],
+  },
+  'country-react-native': {
+    summaryEn:
+      'React Native adaptation of Country App for a mobile experience.',
+    bulletsEn: [
+      'Mobile version of Country App.',
+      'Consumed an external countries API.',
+      'Database support for internal activities.',
+    ],
+  },
+  'aerolinea-virtual': {
+    summaryEn:
+      'Web platform for managing a regional virtual airline.',
+    bulletsEn: [
+      'Registration and login backed by MySQL.',
+      'Management of pilots, ranks, flight hours, and contracts.',
+      'Administration of flights, news, aircraft, and staff processes.',
+    ],
+  },
+  'administracion-produccion': {
+    summaryEn:
+      'System for managing production, accounting, and business operations.',
+    bulletsEn: [
+      'Managed production orders, invoices, accounting, and charts.',
+      'Different roles for admin, production, and secretary users.',
+      'Authentication, MVC views, and socket-based data updates.',
+      'Set up a Linux server with LAMP, Node, MySQL, and RAID for the company.',
+    ],
+  },
+};
+
 const projects = portfolioProjects.map((project) => ({
   ...project,
   imageSrc: resolveImage(project.image),
+  descriptionEn: portfolioCopy[project.id]?.en ?? project.description,
+  descriptionEs: portfolioCopy[project.id]?.es ?? project.description,
+  summaryEn: portfolioDetailsCopy[project.id]?.summaryEn ?? project.details.summary,
+  summaryEs: project.details.summary,
+  bulletsEn: portfolioDetailsCopy[project.id]?.bulletsEn ?? project.details.bullets,
+  bulletsEs: project.details.bullets,
   detailGallery: (project.details.gallery ?? []).map(withBase)
 }));
 ---
-<about class="mt-10">
-    <div class='flex flex-col justify-around content-center about'>
-        <h2 class="text-5xl font-bold">Portfolio</h2>
-        <div class="flex flex-wrap items-center justify-center gap-10 my-20">
+<section id="portfolio" class="portfolio-section">
+    <div class="portfolio">
+        <p class="section-kicker" data-i18n data-en="Recent work" data-es="Trabajo reciente">Recent work</p>
+        <h2>Portfolio</h2>
+        <div class="portfolio-grid">
           {
             projects.map((project)=>
               <PortfolioCard 
@@ -31,14 +204,35 @@ const projects = portfolioProjects.map((project) => ({
           }
           </div>
     </div>
-</about>
+</section>
 <style>
-    about{
-      background-color: #31333b;
+    .portfolio-section {
+      background: #102126;
+      color: var(--snow);
+      padding: 5.5rem 1.25rem;
     }
-    .about {
+    .portfolio {
       margin: auto;
       width: 100%;
 		  max-width: 1024px;
 	  }
+    .section-kicker {
+      color: #ffb703;
+      font-size: 0.78rem;
+      font-weight: 900;
+      letter-spacing: 0.18em;
+      margin: 0 0 0.65rem;
+      text-transform: uppercase;
+    }
+    h2 {
+      color: var(--snow);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 900;
+      margin: 0 0 2rem;
+    }
+    .portfolio-grid {
+      display: grid;
+      gap: 1.1rem;
+      grid-template-columns: repeat(auto-fit, minmax(15.5rem, 1fr));
+    }
 </style>

@@ -1,26 +1,100 @@
 ---
 
 ---
-<about class="mt-20">
-    <div class='flex flex-col justify-around content-center  about'>
-        <h2 class="text-5xl font-bold mb-5">About</h2>
-        <div class='flex'>
-            <div class="w-32 h-1 bg-blue-500 rounded mt-3 mr-3"></div>
-            <div class="text-xl">
-                Como autodidacta y emprendedor, he logrado realizar con éxito una variedad de proyectos complejos, desde la planificación hasta la implementación. 
-                Soy capaz de encontrar soluciones creativas a los desafíos y de <span class='text-blue-400'>trabajar eficazmente en equipo</span>, utilizando mis habilidades de comunicación y liderazgo. 
-                Además, mi compromiso con la puntualidad y mi visión estratégica me permiten siempre cumplir con los plazos y alcanzar resultados sobresalientes.
+
+
+<section class="about-section">
+    <div class="about">
+        <p class="section-kicker" data-i18n data-en="Profile" data-es="Perfil">Profile</p>
+        <h2 data-i18n data-en="Frontend engineering with product judgment" data-es="Ingenieria frontend con criterio de producto">Frontend engineering with product judgment</h2>
+        <div class="about-grid">
+            <div class="signal" aria-hidden="true"></div>
+            <div class="copy" data-i18n data-en="As a self-taught developer and entrepreneur, I have delivered complex projects successfully from planning through implementation. I find creative solutions to challenges, collaborate effectively with teams, and bring communication, leadership, punctuality, and strategic thinking to every delivery." data-es="Como autodidacta y emprendedor, he logrado realizar con exito una variedad de proyectos complejos, desde la planificacion hasta la implementacion. Soy capaz de encontrar soluciones creativas a los desafios y de trabajar eficazmente en equipo, utilizando mis habilidades de comunicacion y liderazgo. Ademas, mi compromiso con la puntualidad y mi vision estrategica me permiten siempre cumplir con los plazos y alcanzar resultados sobresalientes.">
+                As a self-taught developer and entrepreneur, I have delivered complex projects successfully from planning through implementation. I find creative solutions to challenges, collaborate effectively with teams, and bring communication, leadership, punctuality, and strategic thinking to every delivery.
+            </div>
+            <div class="north-card">
+                <strong data-i18n data-en="Focus" data-es="Enfoque">Focus</strong>
+                <p data-i18n data-en="Clean interfaces, scalable systems, and thoughtful delivery from idea to production." data-es="Interfaces limpias, sistemas escalables y entregas cuidadas desde la idea hasta produccion.">Clean interfaces, scalable systems, and thoughtful delivery from idea to production.</p>
             </div>
         </div>
     </div>
-</about>
+</section>
 <style>
-    about{
-        background-color: #31333b;
+    .about-section {
+        background: #fbfbf7;
+        color: #102126;
+        padding: 6rem 1.25rem 3rem;
     }
     .about {
         margin: auto;
-        width: 100%;
 		max-width: 1024px;
+        width: 100%;
 	}
+    .section-kicker {
+        color: var(--maple);
+        font-size: 0.78rem;
+        font-weight: 900;
+        letter-spacing: 0.18em;
+        margin: 0 0 0.8rem;
+        text-transform: uppercase;
+    }
+    h2 {
+        color: #102126;
+        font-size: clamp(2.3rem, 5vw, 4.4rem);
+        font-weight: 900;
+        line-height: 1;
+        margin: 0 0 2rem;
+        max-width: 12ch;
+    }
+    .about-grid {
+        align-items: start;
+        display: grid;
+        gap: 1.5rem;
+        grid-template-columns: 6rem minmax(0, 1fr) minmax(15rem, 0.44fr);
+    }
+    .signal {
+        background: linear-gradient(180deg, var(--maple), #ffb703, #4a7c59);
+        border-radius: 999px;
+        height: 100%;
+        min-height: 10rem;
+        width: 0.36rem;
+    }
+    .copy {
+        color: #304247;
+        font-size: 1.15rem;
+        line-height: 1.8;
+    }
+    .copy span {
+        color: var(--maple);
+        font-weight: 800;
+    }
+    .north-card {
+        background: #102126;
+        border-left: 0.35rem solid var(--maple);
+        border-radius: 8px;
+        box-shadow: 0 24px 55px rgba(16, 33, 38, 0.14);
+        color: var(--snow);
+        padding: 1.25rem;
+    }
+    .north-card strong {
+        color: var(--ice);
+        display: block;
+        font-size: 0.8rem;
+        letter-spacing: 0.14em;
+        margin-bottom: 0.65rem;
+        text-transform: uppercase;
+    }
+    .north-card p {
+        color: rgba(251, 251, 247, 0.84);
+        line-height: 1.6;
+        margin: 0;
+    }
+    @media (max-width: 820px) {
+        .about-grid {
+            grid-template-columns: 0.4rem 1fr;
+        }
+        .north-card {
+            grid-column: 2;
+        }
+    }
 </style>
